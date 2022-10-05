@@ -78,7 +78,7 @@ Cоздание интерактивного приложения и изуче�
         }
         ```
 
-    - Далее, добавим скрипт падения яиц с некоторой переодичностью, так же, используя видеоматериалы
+    - Далее, добавил скрипт падения яиц с некоторой переодичностью, так же, используя видеоматериалы
     ```c#
       void Start()
             {
@@ -91,6 +91,34 @@ Cоздание интерактивного приложения и изуче�
                 egg.transform.position = transform.position + myVector;
                 Invoke("DropEgg", timeBetweenEggDrops);
             }
+
+    ```
+    - Затем, добавил эффекты, припадениии яиц о текстуру плоскости и добавил скрипт исчезновения яиц при столкновении с плоскостью [[7]]()
+    ```c#
+     public class DragonEgg : MonoBehaviour
+    {
+    public static float bottomY = -30f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+        var em = ps.emission;
+        em.enabled = true;
+
+        Renderer rend;
+        rend = GetComponent<Renderer>();
+        rend.enabled = false;
+    }
+    void Update()
+    {
+        if (transform.position.y < bottomY){
+            Destroy(this.gameObject);
+        }
+    }
 
     ```
 
