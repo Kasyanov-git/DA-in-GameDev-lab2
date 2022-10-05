@@ -122,34 +122,34 @@ Cоздание интерактивного приложения и изуче�
 
     ```
     - Так же, был создан основной скрипт игры, который прикреплён к камере, и в нем были записаны строки появления 3-х энергитических щитов при старте сцены
-   ```c#
-       public class DragonPicker : MonoBehaviour
-    {
-        public GameObject energyShieldPrefab;
-        public int numEnergyShield = 3;
-        public float energyShieldBottomY = -6f;
-        public float energyShieldRadius = 1.5f;
+      ```c#
+             public class DragonPicker : MonoBehaviour
+          {
+              public GameObject energyShieldPrefab;
+              public int numEnergyShield = 3;
+              public float energyShieldBottomY = -6f;
+              public float energyShieldRadius = 1.5f;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            for(int i = 1; i <=  numEnergyShield; i++){
-                GameObject tShieldGo = Instantiate<GameObject>(energyShieldPrefab);
-                tShieldGo.transform.position = new Vector3(0, energyShieldBottomY, 0);
-                tShieldGo.transform.localScale = new Vector3(4*i,1*i,4*i);
-            }
-        }
+              // Start is called before the first frame update
+              void Start()
+              {
+                  for(int i = 1; i <=  numEnergyShield; i++){
+                      GameObject tShieldGo = Instantiate<GameObject>(energyShieldPrefab);
+                      tShieldGo.transform.position = new Vector3(0, energyShieldBottomY, 0);
+                      tShieldGo.transform.localScale = new Vector3(4*i,1*i,4*i);
+                  }
+              }
 
-        // Update is called once per frame
-        void Update()
-        {
+              // Update is called once per frame
+              void Update()
+              {
 
-        }
-    }
+              }
+          }
 
-
-    ``` 
-
+      ```
+    - В итоге, получилась такая незамысловатая но интересная сцена [[8]]()
+    
 ## Задание 2
 ### Что произойдёт с координатами объекта, если он перестанет быть дочерним? Создайте три различных примера работы компонента RigidBody.
 
