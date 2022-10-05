@@ -43,48 +43,19 @@ Cоздание интерактивного приложения и изуче�
     - Добавил анимационный контроллер дракону, попросив его летать в пространстве при старте сцены.  [[5]]() [[6]]()
     - Повторил скрипт из видео, позволяющий дракону перемещаться по сцене из стороны в сторону с неким элементом случайности
     
-    ```c#
-    public class EnemyDragon : MonoBehaviour
-    {
-    public GameObject dragonEggPrefab;
-    public float speed = 1;
-    public float timeBetweenEggDrops = 1f;
-    public float leftRightDistance = 10f;
-    public float chanceDirection = 0.1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Invoke("DropEgg", 2f);
+```c#
+
+private void OnTriggerEnter(Collider other) {
+        Debug.Log("Произошло столкновение с " +other.gameObject.name);
+        other.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
     }
 
-    void DropEgg(){
-        Vector3 myVector = new Vector3(0.0f, 5.0f, 0.0f);
-        GameObject egg = Instantiate<GameObject>(dragonEggPrefab);
-        egg.transform.position = transform.position + myVector;
-        Invoke("DropEgg", timeBetweenEggDrops);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 pos = transform.position;
-        pos.x += speed * Time.deltaTime;
-        transform.position = pos;
-
-        if(pos.x < -leftRightDistance){
-            speed = Mathf.Abs(speed);
-        }
-        else if (pos.x > leftRightDistance){
-            speed = -Mathf.Abs(speed);
-        }
+private void OnTriggerExit(Collider other) {
+        Debug.Log("Завершили столкновение с " + other.gameObject.name);
+        other.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
     }
 
-    private void FixedUpdate() {
-        if( Random.value < chanceDirection){
-            speed *= -1;
-        }
-    }
-    }
-    ```
+```
 
 ## Задание 2
 ### Что произойдёт с координатами объекта, если он перестанет быть дочерним? Создайте три различных примера работы компонента RigidBody.
