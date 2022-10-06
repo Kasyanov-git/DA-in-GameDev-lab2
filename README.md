@@ -7,8 +7,8 @@
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
 | Задание 1 | * | 60 |
-| Задание 2 | # | 20 |
-| Задание 3 | * | 20 |
+| Задание 2 | * | 20 |
+| Задание 3 | # | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -122,37 +122,58 @@ Cоздание интерактивного приложения и изуче�
 
     ```
     - Так же, был создан основной скрипт игры, который прикреплён к камере, и в нем были записаны строки появления 3-х энергитических щитов при старте сцены
-      ```c#
-             public class DragonPicker : MonoBehaviour
-          {
-              public GameObject energyShieldPrefab;
-              public int numEnergyShield = 3;
-              public float energyShieldBottomY = -6f;
-              public float energyShieldRadius = 1.5f;
-
-              // Start is called before the first frame update
-              void Start()
+          ```c#
+                 public class DragonPicker : MonoBehaviour
               {
-                  for(int i = 1; i <=  numEnergyShield; i++){
-                      GameObject tShieldGo = Instantiate<GameObject>(energyShieldPrefab);
-                      tShieldGo.transform.position = new Vector3(0, energyShieldBottomY, 0);
-                      tShieldGo.transform.localScale = new Vector3(4*i,1*i,4*i);
+                  public GameObject energyShieldPrefab;
+                  public int numEnergyShield = 3;
+                  public float energyShieldBottomY = -6f;
+                  public float energyShieldRadius = 1.5f;
+
+                  // Start is called before the first frame update
+                  void Start()
+                  {
+                      for(int i = 1; i <=  numEnergyShield; i++){
+                          GameObject tShieldGo = Instantiate<GameObject>(energyShieldPrefab);
+                          tShieldGo.transform.position = new Vector3(0, energyShieldBottomY, 0);
+                          tShieldGo.transform.localScale = new Vector3(4*i,1*i,4*i);
+                      }
+                  }
+
+                  // Update is called once per frame
+                  void Update()
+                  {
+
                   }
               }
 
-              // Update is called once per frame
-              void Update()
-              {
-
-              }
-          }
-
-      ```
+          ```
     - В итоге, получилась такая незамысловатая но интересная сцена [[8]](https://github.com/Kasyanov-git/DA-in-GameDev-lab2/blob/main/8.jpg)
     
 ## Задание 2
-### Что произойдёт с координатами объекта, если он перестанет быть дочерним? Создайте три различных примера работы компонента RigidBody.
+### В проект, выполненный в предыдущем задании, добавить систему проверки того, что SDK подключен (доступен в режиме онлайн и отвечает на запросы);
+  - Ход работы.
+    - В оффициальной документации, во вкладке Установка и использование SDK, нашел как установить и использовать SDK в своём проекте.
+    - Для того, чтобы использовать предложенные HTML строки, в Unity, во вкладке File, перешёл в меню Build Settings.
+В поле Scences in build перетащил рабочую сцену проекта, после выбрал WebGl платформу, необходимую для портала Яндекс Игры.
+    - Затем проект был собран в папку. При сборке, появилля основной INDEX.html файл, открыв который, в редакторе кода, мы вставили необходимые кусочки подключения и проверки Яндекс SDK:
+<!-- html
 
+  <!-- Yandex Games SDK -->
+  <script src="https://yandex.ru/games/sdk/v2"></script>
+
+-->
+а так же:
+```HTML
+
+   YaGames
+      .init()
+      .then(ysdk => {
+          console.log('Yandex SDK initialized');
+          window.ysdk = ysdk;
+    });
+
+```
 
 
 ## Задание 3
